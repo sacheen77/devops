@@ -1,8 +1,13 @@
 const request = require("supertest");
-const app = require("../server");
+const { app, server } = require("../server");
 
 describe("Movie API Tests", () => {
-  
+
+  afterAll(done => {
+    if (server) server.close(done);
+    else done();
+  });
+
   test("GET /movies should return all movies", async () => {
     const res = await request(app).get("/movies");
     expect(res.statusCode).toBe(200);

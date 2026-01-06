@@ -13,7 +13,15 @@ app.get("/movies/:id", (req, res) => {
   res.json(movie);
 });
 
-const PORT = 5000;
-app.listen(PORT, () => console.log("Backend running on port " + PORT));
+const PORT = process.env.PORT || 5000;
 
-module.exports = app;
+let server;
+
+// Only start server when NOT running tests
+if (process.env.NODE_ENV !== "test") {
+  server = app.listen(PORT, () =>
+    console.log("Backend running on port " + PORT)
+  );
+}
+
+module.exports = { app, server };
