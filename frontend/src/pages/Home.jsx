@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <div className="container">
-      <h1 className="title">Movie Library</h1>
+      <h1 className="title">Movie Collection</h1>
 
       <div className="movie-grid">
         {movies.map((movie) => (
